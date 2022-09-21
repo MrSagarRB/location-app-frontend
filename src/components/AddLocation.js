@@ -29,9 +29,13 @@ const AddLocation = () => {
   let savelocation = (e) => {
     e.preventDefault();
 
-    Axios.post(`${baseUrl}/api/save-location`, formData).then((result) => {
-      console.log(result);
-    });
+    Axios.post(`${baseUrl}/api/save-location`, formData)
+      .then((result) => {
+        alert("Saved Successfully");
+      })
+      .then(() => {
+        setFormData({ ...formData, locationName: "" });
+      });
 
     console.log(formData);
   };
@@ -45,6 +49,7 @@ const AddLocation = () => {
           Enter Location Name
         </label>
         <input
+          value={formData?.locationName}
           required
           type="text"
           onChange={(e) => {
